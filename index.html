@@ -8,19 +8,35 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='1' y='20' width='10' height='10' fill='%23ff4d14' stroke='%230a0a0a' stroke-width='2'/><rect x='11' y='10' width='10' height='10' fill='%23ff4d14' stroke='%230a0a0a' stroke-width='2'/><rect x='21' y='0' width='10' height='10' fill='%23ff4d14' stroke='%230a0a0a' stroke-width='2'/></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='1' y='20' width='10' height='10' fill='%231abc9c' stroke='%230a2e4f' stroke-width='2'/><rect x='11' y='10' width='10' height='10' fill='%231abc9c' stroke='%230a2e4f' stroke-width='2'/><rect x='21' y='0' width='10' height='10' fill='%231abc9c' stroke='%230a2e4f' stroke-width='2'/></svg>">
 
 <style>
-/* ───────── tokens ───────── */
+/* ───────── tokens — ITBG brand palette ───────── */
 :root{
-  --bg:#fafaf7;
+  /* brand primaries */
+  --navy-darkest:#0a2e4f;   /* brand dark navy — ink, borders */
+  --navy:#0f3460;            /* brand navy — deeper surfaces */
+  --navy-mid:#1a5276;        /* brand main navy — gradient mid */
+  --deep:#0d2b45;            /* brand dark bg — deepest */
+  --teal:#1abc9c;            /* brand primary accent */
+  --teal-mid:#17a589;        /* brand teal mid */
+  --green:#2ecc71;           /* brand green — signal / stickers */
+  --pale:#e8f8f5;            /* brand pale mint — subtle fills */
+  --gray-bg:#f4f6f9;         /* brand light gray background */
+
+  /* brutalist roles mapped to brand */
+  --bg:var(--gray-bg);
   --panel:#ffffff;
-  --ink:#0a0a0a;
-  --orange:#ff4d14;
-  --blue:#1a3cff;
-  --yellow:#ffd93d;
-  --rule:#0a0a0a;
-  --mute:#5a5a5a;
+  --ink:var(--navy-darkest);
+  --orange:var(--teal);       /* primary accent (was hot orange) */
+  --blue:var(--navy);          /* deep card bg (was cobalt) */
+  --yellow:var(--green);       /* pop sticker color (was yellow) */
+  --rule:var(--navy-darkest);
+  --mute:#5a7590;              /* navy-tinted mute */
+
+  /* brand gradients */
+  --g-main:linear-gradient(135deg, #0a2e4f 0%, #0f3460 30%, #1a5276 60%, #1abc9c 100%);
+  --g-accent:linear-gradient(135deg, #1a5276, #1abc9c);
 
   --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
   --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
@@ -41,16 +57,16 @@ body{overflow-x:hidden;font-size:16px;line-height:1.5;font-weight:500}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
-::selection{background:var(--orange);color:var(--bg)}
+::selection{background:var(--teal);color:var(--ink)}
 
 /* ───────── utilities ───────── */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad);position:relative}
 .mono{font-family:var(--f-mono);font-weight:500;text-transform:uppercase;letter-spacing:0.04em;font-size:12px}
 .display{font-family:var(--f-display);letter-spacing:-0.03em;font-weight:800;text-transform:uppercase;line-height:0.88}
 
-.hl{background:var(--orange);color:var(--bg);padding:0 .12em;display:inline-block}
-.hl-blue{background:var(--blue);color:var(--bg);padding:0 .12em;display:inline-block}
-.hl-yellow{background:var(--yellow);color:var(--ink);padding:0 .12em;display:inline-block}
+.hl{background:var(--teal);color:var(--ink);padding:0 .12em;display:inline-block}
+.hl-blue{background:var(--navy);color:#fff;padding:0 .12em;display:inline-block}
+.hl-yellow{background:var(--green);color:var(--ink);padding:0 .12em;display:inline-block}
 
 /* ───────── top strip ───────── */
 .topstrip{
@@ -85,7 +101,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 }
 .brand-sticker{
   position:absolute;top:-12px;right:-78px;
-  background:var(--orange);color:var(--bg);
+  background:var(--green);color:var(--ink);
   font-family:var(--f-display);font-weight:800;font-size:11px;letter-spacing:0.04em;
   padding:6px 10px;border:var(--bth) solid var(--ink);
   transform:rotate(-6deg);
@@ -114,10 +130,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   cursor:pointer;border-radius:2px;
 }
 .btn:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
-.btn.primary{background:var(--orange);color:var(--bg)}
-.btn.blue{background:var(--blue);color:var(--bg)}
-.btn.yellow{background:var(--yellow);color:var(--ink)}
-.btn.ink{background:var(--ink);color:var(--bg)}
+.btn.primary{background:var(--g-accent);color:#fff}
+.btn.blue{background:var(--navy);color:#fff}
+.btn.yellow{background:var(--green);color:var(--ink)}
+.btn.ink{background:var(--ink);color:#fff}
 .btn .arr{font-weight:800;font-size:16px}
 
 /* ───────── pixel cascade logo motif ───────── */
@@ -307,10 +323,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   padding:6px 10px;background:var(--bg);border:var(--bth) solid var(--ink);border-radius:2px;
 }
 
-.svc.flag{background:var(--orange);color:var(--bg)}
-.svc.flag .num{-webkit-text-stroke:2.5px var(--bg);color:transparent}
-.svc.flag p{color:var(--bg)}
-.svc.flag .tag{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.svc.flag{background:var(--g-accent);color:var(--ink)}
+.svc.flag .num{-webkit-text-stroke:2.5px var(--ink);color:transparent}
+.svc.flag p{color:var(--ink)}
+.svc.flag .tag{background:var(--ink);color:#fff;border-color:var(--ink)}
 .svc.flag .flag-badge{
   position:absolute;top:16px;right:16px;
   font-family:var(--f-display);font-weight:800;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;
@@ -318,15 +334,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   transform:rotate(6deg);box-shadow:3px 3px 0 var(--ink);
 }
 
-.svc.ink-bg{background:var(--ink);color:var(--bg)}
-.svc.ink-bg .num{-webkit-text-stroke:2.5px var(--bg);color:transparent}
-.svc.ink-bg p{color:#d9d9d9}
-.svc.ink-bg .tag{background:var(--ink);color:var(--bg);border-color:var(--bg)}
+.svc.ink-bg{background:var(--ink);color:#fff}
+.svc.ink-bg .num{-webkit-text-stroke:2.5px #fff;color:transparent}
+.svc.ink-bg p{color:#cfd8e5}
+.svc.ink-bg .tag{background:var(--ink);color:#fff;border-color:#fff}
 
-.svc.blue-bg{background:var(--blue);color:var(--bg)}
-.svc.blue-bg .num{-webkit-text-stroke:2.5px var(--bg);color:transparent}
-.svc.blue-bg p{color:#e0e6ff}
-.svc.blue-bg .tag{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.svc.blue-bg{background:var(--navy);color:#fff}
+.svc.blue-bg .num{-webkit-text-stroke:2.5px #fff;color:transparent}
+.svc.blue-bg p{color:#c7d6e8}
+.svc.blue-bg .tag{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* asymmetric layout */
 .svc[data-span="7"]{grid-column:span 7}
@@ -362,13 +378,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   font-family:var(--f-display);font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:0.02em;margin:0 0 10px;line-height:1.05;
 }
 .tl p{font-family:var(--f-body);font-weight:500;font-size:14px;line-height:1.5;margin:0;color:#1c1c1c}
-.tl.now{background:var(--orange);color:var(--bg)}
-.tl.now p{color:var(--bg)}
+.tl.now{background:var(--g-accent);color:var(--ink)}
+.tl.now p{color:var(--ink)}
 .tl .chip{
   display:inline-block;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;
-  padding:4px 8px;background:var(--ink);color:var(--bg);margin-bottom:12px;
+  padding:4px 8px;background:var(--ink);color:#fff;margin-bottom:12px;
 }
-.tl.now .chip{background:var(--ink);color:var(--yellow)}
+.tl.now .chip{background:var(--ink);color:var(--green)}
 
 /* ───────── partners ───────── */
 .partners-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -421,7 +437,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .promo-band{
   position:relative;
   transform:rotate(-3deg);
-  background:var(--orange);color:var(--bg);
+  background:var(--g-accent);color:var(--ink);
   border-top:var(--b) solid var(--ink);
   border-bottom:var(--b) solid var(--ink);
   padding:56px 0;
@@ -494,7 +510,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   border:var(--bth) solid var(--ink);background:var(--bg);
   transition:transform .2s ease,background .2s ease,color .2s ease;
 }
-.faq[open] .q-i{background:var(--orange);color:var(--bg);transform:rotate(45deg)}
+.faq[open] .q-i{background:var(--teal);color:var(--ink);transform:rotate(45deg)}
 .faq-body{
   padding:0 26px 22px 26px;
   font-family:var(--f-body);font-weight:500;font-size:15px;line-height:1.55;color:#1c1c1c;
@@ -568,7 +584,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 }
 .map-sticker{
   position:absolute;top:-16px;right:-12px;z-index:3;
-  background:var(--orange);color:var(--bg);
+  background:var(--teal);color:var(--ink);
   font-family:var(--f-display);font-weight:800;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
   padding:10px 14px;border:var(--b) solid var(--ink);
   transform:rotate(7deg);
@@ -799,9 +815,9 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
   <div class="nav-inner">
     <a href="#top" class="brand" aria-label="ITBG — на главную">
       <svg class="pixel-logo" viewBox="0 0 48 48" aria-hidden="true">
-        <rect x="2" y="30" width="14" height="14" fill="#ff4d14" stroke="#0a0a0a" stroke-width="2.5"/>
-        <rect x="17" y="17" width="14" height="14" fill="#ff4d14" stroke="#0a0a0a" stroke-width="2.5"/>
-        <rect x="32" y="4" width="14" height="14" fill="#ff4d14" stroke="#0a0a0a" stroke-width="2.5"/>
+        <rect x="2" y="30" width="14" height="14" fill="#1abc9c" stroke="#0a2e4f" stroke-width="2.5"/>
+        <rect x="17" y="17" width="14" height="14" fill="#1abc9c" stroke="#0a2e4f" stroke-width="2.5"/>
+        <rect x="32" y="4" width="14" height="14" fill="#1abc9c" stroke="#0a2e4f" stroke-width="2.5"/>
       </svg>
       <span class="brand-mark">
         <span class="brand-name">ITBG</span>
@@ -1242,35 +1258,35 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.15"/>
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#0a2e4f" stroke-width="1" opacity="0.15"/>
               </pattern>
             </defs>
-            <rect width="400" height="300" fill="#ffd93d"/>
+            <rect width="400" height="300" fill="#e8f8f5"/>
             <rect width="400" height="300" fill="url(#grid)"/>
             <!-- roads -->
-            <path d="M0 180 L400 150" stroke="#0a0a0a" stroke-width="10" fill="none"/>
-            <path d="M260 0 L230 300" stroke="#0a0a0a" stroke-width="10" fill="none"/>
-            <path d="M0 80 L400 60" stroke="#0a0a0a" stroke-width="4" fill="none" opacity="0.5"/>
-            <path d="M100 0 L90 300" stroke="#0a0a0a" stroke-width="4" fill="none" opacity="0.5"/>
+            <path d="M0 180 L400 150" stroke="#0a2e4f" stroke-width="10" fill="none"/>
+            <path d="M260 0 L230 300" stroke="#0a2e4f" stroke-width="10" fill="none"/>
+            <path d="M0 80 L400 60" stroke="#0a2e4f" stroke-width="4" fill="none" opacity="0.5"/>
+            <path d="M100 0 L90 300" stroke="#0a2e4f" stroke-width="4" fill="none" opacity="0.5"/>
             <!-- blocks -->
-            <rect x="40" y="110" width="50" height="30" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
-            <rect x="110" y="90" width="70" height="40" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
-            <rect x="280" y="200" width="60" height="50" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
-            <rect x="40" y="220" width="60" height="40" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="40" y="110" width="50" height="30" fill="#ffffff" stroke="#0a2e4f" stroke-width="2"/>
+            <rect x="110" y="90" width="70" height="40" fill="#ffffff" stroke="#0a2e4f" stroke-width="2"/>
+            <rect x="280" y="200" width="60" height="50" fill="#ffffff" stroke="#0a2e4f" stroke-width="2"/>
+            <rect x="40" y="220" width="60" height="40" fill="#ffffff" stroke="#0a2e4f" stroke-width="2"/>
             <!-- pin -->
-            <circle cx="235" cy="162" r="28" fill="#ff4d14" stroke="#0a0a0a" stroke-width="3"/>
-            <circle cx="235" cy="162" r="10" fill="#0a0a0a"/>
+            <circle cx="235" cy="162" r="28" fill="#1abc9c" stroke="#0a2e4f" stroke-width="3"/>
+            <circle cx="235" cy="162" r="10" fill="#0a2e4f"/>
             <!-- label ribbon -->
             <g transform="translate(235,115) rotate(-4)">
-              <rect x="-52" y="-14" width="104" height="22" fill="#0a0a0a"/>
-              <text x="0" y="1" text-anchor="middle" dominant-baseline="middle" fill="#ffd93d" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="12" letter-spacing="1">ITBG ЗДЕСЬ</text>
+              <rect x="-52" y="-14" width="104" height="22" fill="#0a2e4f"/>
+              <text x="0" y="1" text-anchor="middle" dominant-baseline="middle" fill="#2ecc71" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="12" letter-spacing="1">ITBG ЗДЕСЬ</text>
             </g>
             <!-- coords -->
             <g transform="translate(16,284)">
-              <text font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#0a0a0a">59.83° N · 30.35° E</text>
+              <text font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#0a2e4f">59.83° N · 30.35° E</text>
             </g>
             <g transform="translate(384,284)" text-anchor="end">
-              <text font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#0a0a0a">Дунайский 13к1</text>
+              <text font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#0a2e4f">Дунайский 13к1</text>
             </g>
           </svg>
         </div>
@@ -1296,9 +1312,9 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
       <div class="ft-brand">
         <div style="display:flex;align-items:center;gap:14px">
           <svg class="pixel-logo" viewBox="0 0 48 48" aria-hidden="true">
-            <rect x="2" y="30" width="14" height="14" fill="#ff4d14" stroke="#ffd93d" stroke-width="2.5"/>
-            <rect x="17" y="17" width="14" height="14" fill="#ff4d14" stroke="#ffd93d" stroke-width="2.5"/>
-            <rect x="32" y="4" width="14" height="14" fill="#ff4d14" stroke="#ffd93d" stroke-width="2.5"/>
+            <rect x="2" y="30" width="14" height="14" fill="#1abc9c" stroke="#2ecc71" stroke-width="2.5"/>
+            <rect x="17" y="17" width="14" height="14" fill="#1abc9c" stroke="#2ecc71" stroke-width="2.5"/>
+            <rect x="32" y="4" width="14" height="14" fill="#1abc9c" stroke="#2ecc71" stroke-width="2.5"/>
           </svg>
           <span class="name">ITBG</span>
         </div>
@@ -1399,9 +1415,9 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
 <style>
 #itbg-back{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:10px;
 padding:11px 15px;border:1px solid rgba(0,0,0,.15);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-border-radius:999px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#0a0a0a;
+border-radius:999px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#0a2e4f;
 text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:all .25s ease}
-#itbg-back:hover{transform:translateY(-1px);background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+#itbg-back:hover{transform:translateY(-1px);background:#0a2e4f;color:#fff;border-color:#0a2e4f}
 #itbg-back .d{width:7px;height:7px;border-radius:50%;background:#d0ff3d;box-shadow:0 0 6px #d0ff3d}
 @media (prefers-color-scheme: dark){}
 </style>
