@@ -424,9 +424,44 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .partner-row:hover .desc{color:#bbb}
 .partner-row .arr{font-family:var(--f-display);font-weight:800;font-size:22px}
 
-.partner.p2 .partner-head{background:var(--blue);color:var(--bg)}
-.partner.p2 .partner-head p{color:#e0e6ff}
-.partner.p2 .partner-head .external{background:var(--yellow);color:var(--ink)}
+.partner.p2 .partner-head{background:var(--navy);color:#fff}
+.partner.p2 .partner-head p{color:#c7d6e8}
+.partner.p2 .partner-head .external{background:var(--green);color:var(--ink)}
+
+/* partner categories (compact cards) */
+.partner-cat{margin-top:64px;border-top:var(--b) solid var(--ink);padding-top:36px}
+.cat-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px;gap:20px}
+.cat-label{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(18px,2vw,28px);
+  text-transform:uppercase;letter-spacing:-0.015em;line-height:1;
+}
+.cat-count{
+  font-family:var(--f-mono);font-weight:500;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--mute);padding:5px 9px;border:var(--bth) solid var(--ink);background:var(--panel);
+}
+.partner-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.partner-mini-grid.thirds{grid-template-columns:repeat(3,1fr)}
+.partner-mini-grid.quarters{grid-template-columns:repeat(4,1fr)}
+.partner-mini{
+  background:var(--panel);border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow);padding:22px 22px 20px;
+  transform:translate(0,0);transition:transform .15s ease,box-shadow .15s ease;
+  display:flex;flex-direction:column;gap:12px;position:relative;
+}
+.partner-mini:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.partner-mini .name{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(18px,1.6vw,24px);line-height:0.95;
+  letter-spacing:-0.02em;text-transform:uppercase;margin:0;
+}
+.partner-mini p{font-family:var(--f-body);font-weight:500;font-size:13.5px;line-height:1.5;margin:0;color:#1c1c1c;flex:1}
+.partner-mini .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.partner-mini .chip{
+  font-family:var(--f-mono);font-weight:500;font-size:10px;text-transform:uppercase;letter-spacing:0.06em;
+  padding:4px 8px;border:1.5px solid var(--ink);background:var(--pale);color:var(--ink);
+}
+.partner-mini .chip.hot{background:var(--teal);color:var(--ink)}
+.partner-mini .chip.green{background:var(--green);color:var(--ink)}
+.partner-mini .chip.navy{background:var(--navy);color:#fff;border-color:var(--navy)}
 
 /* ───────── promos — diagonal banner ───────── */
 .promo-wrap{
@@ -653,6 +688,8 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
   .timeline::before{display:none}
   .tl:nth-child(even),.tl:nth-child(odd){margin:0}
   .partners-grid{grid-template-columns:1fr}
+  .partner-mini-grid.quarters{grid-template-columns:repeat(2,1fr)}
+  .partner-mini-grid.thirds{grid-template-columns:repeat(3,1fr)}
   .promo-inner{grid-template-columns:1fr;gap:32px}
   .promo-sticker{right:4%;font-size:11px}
   .promo-sticker-2{left:4%;bottom:10px}
@@ -734,6 +771,12 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
   .partner-row{padding:16px 22px;grid-template-columns:1fr auto;gap:12px}
   .partner-row .desc{grid-column:1 / -1;font-size:13px}
   .partner-row .prod{font-size:15px}
+  /* partner categories */
+  .partner-mini-grid,.partner-mini-grid.thirds,.partner-mini-grid.quarters{grid-template-columns:1fr;gap:14px}
+  .partner-mini{padding:18px}
+  .partner-mini .name{font-size:clamp(18px,4.6vw,22px)}
+  .partner-cat{padding-top:24px;margin-top:36px}
+  .cat-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:18px}
   /* promos — flatten diagonal on phones, keep rotation but kill negative margins */
   .promo-wrap{padding:72px 0}
   .promo-band{transform:rotate(-2deg);margin-left:-4%;margin-right:-4%;padding:40px 0;box-shadow:0 6px 0 var(--ink)}
@@ -1056,27 +1099,33 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
     <div class="sec-head reveal">
       <div class="sec-num">04</div>
       <h2 class="sec-title">Технологические<br>партнёры</h2>
-      <div class="sec-kicker">Партнёры</div>
+      <div class="sec-kicker">11 вендоров</div>
     </div>
 
+    <!-- Featured: 1С + Сканпорт/DataMobile -->
     <div class="partners-grid">
       <article class="partner p1 reveal">
         <div class="partner-head">
           <div>
-            <h3 class="name">Сканпорт</h3>
-            <p>Эксперты в автоматизации бизнеса на базе штрихкодов и RFID. Разработчики и интеграторы комплексных решений для учёта и маркировки с мобильными технологиями.</p>
+            <h3 class="name">1С</h3>
+            <p>Российская компания 1991 года. Разработчик платформы «1С:Предприятие 8» и прикладных решений для управления предприятием, планирования и финансового учёта. Мы — официальный партнёр сети «1С:Франчайзинг» с 2013 года.</p>
           </div>
-          <a class="external" href="https://scanport.ru" target="_blank" rel="noopener">scanport.ru ↗</a>
+          <a class="external" href="https://v8.1c.ru/vse-programmy-1c/" target="_blank" rel="noopener">v8.1c.ru ↗</a>
         </div>
         <div class="partner-list">
-          <a class="partner-row" href="https://data-mobile.ru/datamobile/" target="_blank" rel="noopener">
-            <span class="prod">Флагман</span>
-            <span class="desc">Комплексные решения учёта и маркировки</span>
+          <a class="partner-row" href="https://v8.1c.ru/vse-programmy-1c/" target="_blank" rel="noopener">
+            <span class="prod">1С:Предприятие 8</span>
+            <span class="desc">Платформа и прикладные решения</span>
             <span class="arr">→</span>
           </a>
-          <a class="partner-row" href="https://scanport.ru" target="_blank" rel="noopener">
-            <span class="prod">RFID · Штрих-код</span>
-            <span class="desc">Мобильные технологии и интеграция</span>
+          <a class="partner-row" href="https://1c.ru/rus/partners/franch.jsp" target="_blank" rel="noopener">
+            <span class="prod">Франчайзи с 2013</span>
+            <span class="desc">Официальный партнёр сети «1С:Франчайзинг»</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="partner-row" href="https://its.1c.ru/" target="_blank" rel="noopener">
+            <span class="prod">1С:ИТС</span>
+            <span class="desc">Информационно-технологическое сопровождение</span>
             <span class="arr">→</span>
           </a>
         </div>
@@ -1085,10 +1134,10 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
       <article class="partner p2 reveal">
         <div class="partner-head">
           <div>
-            <h3 class="name">DataMobile</h3>
-            <p>Линейка продуктов Сканпорта: мобильный учёт, инвентаризация, ТОиР, доставка, прайсчекеры.</p>
+            <h3 class="name">Сканпорт<br>+ DataMobile</h3>
+            <p>Эксперты в автоматизации на базе штрихкодов и RFID. Линейка DataMobile — мобильный учёт для склада, розницы, сервисного обслуживания и доставки.</p>
           </div>
-          <a class="external" href="https://data-mobile.ru" target="_blank" rel="noopener">data-mobile.ru ↗</a>
+          <a class="external" href="https://scanport.ru" target="_blank" rel="noopener">scanport.ru ↗</a>
         </div>
         <div class="partner-list">
           <a class="partner-row" href="https://data-mobile.ru/datamobile/" target="_blank" rel="noopener">
@@ -1118,6 +1167,81 @@ footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink
           </a>
         </div>
       </article>
+    </div>
+
+    <!-- Category: Security -->
+    <div class="partner-cat reveal">
+      <div class="cat-head">
+        <span class="cat-label">Информационная безопасность</span>
+        <span class="cat-count">2 вендора</span>
+      </div>
+      <div class="partner-mini-grid">
+        <article class="partner-mini">
+          <h4 class="name">Лаборатория Касперского</h4>
+          <p>Международная компания, системы защиты от вирусов, спама, хакерских атак и киберугроз. Работает в 200+ странах мира. Центральный офис в Москве.</p>
+          <div class="chips"><span class="chip hot">Антивирус / EDR</span><span class="chip">Международный</span></div>
+        </article>
+        <article class="partner-mini">
+          <h4 class="name">Аванпост</h4>
+          <p>Российский вендор-новатор в области безопасности идентификационных данных. IDM, MFA+, служба каталога, FAM, PKI. Собственная разработка, не на Open-Source.</p>
+          <div class="chips"><span class="chip green">IDM · MFA · PKI</span><span class="chip">ФСТЭК</span><span class="chip">Реестр Минцифры</span></div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Category: Platforms and Office -->
+    <div class="partner-cat reveal">
+      <div class="cat-head">
+        <span class="cat-label">Платформы и офисное ПО</span>
+        <span class="cat-count">3 вендора</span>
+      </div>
+      <div class="partner-mini-grid thirds">
+        <article class="partner-mini">
+          <h4 class="name">Microsoft</h4>
+          <p>Крупнейший мировой вендор ПО. Поставщик серверных решений и инфраструктурных платформ для корпоративных клиентов.</p>
+          <div class="chips"><span class="chip hot">Серверные решения</span><span class="chip">Windows Server</span></div>
+        </article>
+        <article class="partner-mini">
+          <h4 class="name">Р7</h4>
+          <p>Российский разработчик офисного ПО. Ключевой продукт — пакет «Р7-Офис»: документы, таблицы, презентации, совместная работа.</p>
+          <div class="chips"><span class="chip green">Р7-Офис</span><span class="chip">Реестр Минцифры</span><span class="chip">Импортозамещение</span></div>
+        </article>
+        <article class="partner-mini">
+          <h4 class="name">CommuniGate Pro</h4>
+          <p>АО «СБК» — универсальная коммуникационная платформа: защищённая почта, мессенджер, VoIP, ВКС, колл-центры. 135 млн учётных записей.</p>
+          <div class="chips"><span class="chip hot">Почта · VoIP · ВКС</span><span class="chip">ФСТЭК 5 УД</span><span class="chip">Реестр Минцифры</span></div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Category: Telecom and Infrastructure -->
+    <div class="partner-cat reveal">
+      <div class="cat-head">
+        <span class="cat-label">Телеком и инфраструктура</span>
+        <span class="cat-count">4 вендора</span>
+      </div>
+      <div class="partner-mini-grid quarters">
+        <article class="partner-mini">
+          <h4 class="name">Мегафон</h4>
+          <p>Федеральный оператор связи. Ведущие позиции на телекоммуникационном рынке России и мира.</p>
+          <div class="chips"><span class="chip hot">Сотовая связь</span><span class="chip">B2B</span></div>
+        </article>
+        <article class="partner-mini">
+          <h4 class="name">Тринити</h4>
+          <p>Корпоративные серверы, системы хранения данных, сетевые решения.</p>
+          <div class="chips"><span class="chip green">Серверы / СХД</span><span class="chip">Сети</span></div>
+        </article>
+        <article class="partner-mini">
+          <h4 class="name">ICS Балтика</h4>
+          <p>Поставщик телекоммуникационного и электротехнического оборудования.</p>
+          <div class="chips"><span class="chip hot">Оборудование</span></div>
+        </article>
+        <article class="partner-mini">
+          <h4 class="name">Северен-Телеком</h4>
+          <p>Оператор связи, провайдер интернета и телефонии.</p>
+          <div class="chips"><span class="chip green">ISP</span><span class="chip">Телефония</span></div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
