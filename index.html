@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='0' y='22' width='6' height='6' fill='%23d0ff3d'/><rect x='8' y='15' width='6' height='6' fill='%23d0ff3d' opacity='.78'/><rect x='16' y='22' width='6' height='6' fill='%23d0ff3d' opacity='.55'/><rect x='22' y='8' width='6' height='6' fill='%23d0ff3d' opacity='.35'/><rect x='27' y='16' width='4' height='4' fill='%23d0ff3d' opacity='.2'/></svg>">
 
 <style>
 /* ───────── tokens ───────── */
@@ -99,9 +100,26 @@ body::before{
   display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;
   padding:18px var(--pad);max-width:var(--max);margin:0 auto;
 }
-.brand{display:flex;align-items:baseline;gap:12px;font-family:var(--f-serif);font-weight:500;font-size:28px;letter-spacing:-0.04em;color:#f2efe6}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--f-serif);font-weight:500;font-size:28px;letter-spacing:-0.04em;color:#f2efe6;line-height:1}
 .brand em{font-style:italic;color:var(--accent);font-weight:500}
+.brand .wordmark{display:inline-block;line-height:1;padding-top:4px}
 .brand .tag{font-family:var(--f-mono);font-size:10px;color:var(--mute);letter-spacing:0.14em;text-transform:uppercase;align-self:center;padding-left:10px;border-left:1px solid var(--rule)}
+
+/* ── reinterpreted ITBG mark (pixel cascade) ── */
+.brand-mark{width:44px;height:26px;display:block;flex-shrink:0;color:var(--accent)}
+.brand-mark .dot{animation:dotPop .8s cubic-bezier(.2,.7,.2,1) both}
+.brand-mark .d0{animation-delay:.05s}
+.brand-mark .d1{animation-delay:.13s}
+.brand-mark .d2{animation-delay:.21s}
+.brand-mark .d3{animation-delay:.29s}
+.brand-mark .d4{animation-delay:.37s}
+.brand-mark .d5{animation-delay:.45s}
+@keyframes dotPop{0%{transform:translate(-10px,10px) scale(.2);opacity:0}}
+.brand:hover .brand-mark .dot{animation:dotShimmer 1.2s ease-in-out infinite}
+.brand:hover .brand-mark .d0{animation-delay:0s} .brand:hover .brand-mark .d1{animation-delay:.08s}
+.brand:hover .brand-mark .d2{animation-delay:.16s} .brand:hover .brand-mark .d3{animation-delay:.24s}
+.brand:hover .brand-mark .d4{animation-delay:.32s} .brand:hover .brand-mark .d5{animation-delay:.40s}
+@keyframes dotShimmer{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 .nav-links{display:flex;gap:28px;justify-content:center;font-size:14px;color:var(--dim)}
 .nav-links a{position:relative;padding:6px 0;transition:color .2s ease}
 .nav-links a:hover{color:var(--text)}
@@ -128,6 +146,16 @@ body::before{
     radial-gradient(ellipse 80% 50% at 80% 20%, rgba(208,255,61,.08), transparent 60%),
     radial-gradient(ellipse 50% 40% at 10% 80%, rgba(255,90,31,.05), transparent 70%);
 }
+
+/* ── big decorative cascade mark in hero corner ── */
+.hero-mark{
+  position:absolute;right:calc(var(--pad) * -0.2);top:32px;
+  width:min(52vw, 600px);height:auto;pointer-events:none;opacity:.9;z-index:0;
+}
+.hero-mark rect{fill:var(--accent);transform-box:fill-box;transform-origin:center}
+.hero-mark .r{animation:heroRise 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes heroRise{0%{transform:translate(-40px,40px);opacity:0}}
+@media (max-width:900px){.hero-mark{opacity:.4;top:8px}}
 .hero-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:58px;gap:24px}
 .hero-meta .col{display:flex;flex-direction:column;gap:6px}
 .hero-meta .k{font-family:var(--f-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mute)}
@@ -473,8 +501,9 @@ body::before{
 }
 .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
 .foot-brand{display:flex;flex-direction:column;gap:16px}
-.foot-brand .logo{font-family:var(--f-serif);font-weight:500;font-size:54px;line-height:1;letter-spacing:-0.04em;color:#f2efe6}
+.foot-brand .logo{font-family:var(--f-serif);font-weight:500;font-size:54px;line-height:1;letter-spacing:-0.04em;color:#f2efe6;display:flex;align-items:center;gap:18px}
 .foot-brand .logo em{font-style:italic;color:var(--accent);font-weight:500}
+.foot-brand .foot-mark{width:120px;height:60px;flex-shrink:0;display:block;color:var(--accent)}
 .foot-brand .motto{font-family:var(--f-serif);font-style:italic;font-size:18px;color:var(--dim);max-width:30ch;line-height:1.35}
 .foot-col .h{font-family:var(--f-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:block}
 .foot-col a, .foot-col .line{display:block;color:var(--dim);font-size:14px;padding:5px 0;transition:color .2s}
@@ -515,8 +544,19 @@ body::before{
 <!-- ───────── nav ───────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="brand" aria-label="ITBG">
-      itb<em>g</em><span class="tag">IT Business Group</span>
+    <a href="#" class="brand" aria-label="ITBG · IT Business Group">
+      <svg class="brand-mark" viewBox="0 0 44 26" aria-hidden="true">
+        <g fill="currentColor">
+          <rect class="dot d0" x="0"  y="18" width="6" height="6"/>
+          <rect class="dot d1" x="8"  y="12" width="6" height="6" opacity=".82"/>
+          <rect class="dot d2" x="16" y="18" width="6" height="6" opacity=".65"/>
+          <rect class="dot d3" x="24" y="6"  width="6" height="6" opacity=".48"/>
+          <rect class="dot d4" x="32" y="12" width="5" height="5" opacity=".30"/>
+          <rect class="dot d5" x="38" y="4"  width="4" height="4" opacity=".18"/>
+        </g>
+      </svg>
+      <span class="wordmark">itb<em>g</em></span>
+      <span class="tag">IT Business Group</span>
     </a>
     <div class="nav-links">
       <a href="#services">Услуги</a>
@@ -534,6 +574,22 @@ body::before{
 
 <!-- ───────── hero ───────── -->
 <header class="hero">
+  <svg class="hero-mark" viewBox="0 0 600 320" aria-hidden="true">
+    <g>
+      <rect class="r" style="animation-delay:.05s" x="0"   y="240" width="44" height="44" opacity=".95"/>
+      <rect class="r" style="animation-delay:.11s" x="56"  y="200" width="44" height="44" opacity=".82"/>
+      <rect class="r" style="animation-delay:.17s" x="112" y="240" width="44" height="44" opacity=".72"/>
+      <rect class="r" style="animation-delay:.23s" x="168" y="160" width="44" height="44" opacity=".60"/>
+      <rect class="r" style="animation-delay:.29s" x="224" y="200" width="44" height="44" opacity=".55"/>
+      <rect class="r" style="animation-delay:.35s" x="280" y="120" width="44" height="44" opacity=".45"/>
+      <rect class="r" style="animation-delay:.41s" x="336" y="160" width="40" height="40" opacity=".38"/>
+      <rect class="r" style="animation-delay:.47s" x="388" y="90"  width="40" height="40" opacity=".30"/>
+      <rect class="r" style="animation-delay:.53s" x="438" y="130" width="36" height="36" opacity=".23"/>
+      <rect class="r" style="animation-delay:.59s" x="482" y="70"  width="32" height="32" opacity=".17"/>
+      <rect class="r" style="animation-delay:.65s" x="522" y="108" width="28" height="28" opacity=".12"/>
+      <rect class="r" style="animation-delay:.71s" x="556" y="54"  width="24" height="24" opacity=".08"/>
+    </g>
+  </svg>
   <div class="wrap">
     <div class="hero-meta">
       <div class="col">
@@ -988,7 +1044,20 @@ body::before{
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="logo">itb<em>g</em></div>
+        <div class="logo">
+          <svg class="foot-mark" viewBox="0 0 120 60" aria-hidden="true">
+            <g fill="currentColor">
+              <rect x="0"   y="42" width="14" height="14"/>
+              <rect x="18"  y="28" width="14" height="14" opacity=".82"/>
+              <rect x="36"  y="42" width="14" height="14" opacity=".65"/>
+              <rect x="54"  y="14" width="14" height="14" opacity=".5"/>
+              <rect x="72"  y="28" width="12" height="12" opacity=".36"/>
+              <rect x="88"  y="4"  width="12" height="12" opacity=".22"/>
+              <rect x="104" y="18" width="10" height="10" opacity=".12"/>
+            </g>
+          </svg>
+          itb<em>g</em>
+        </div>
         <div class="motto">«Решения для людей, а не для компьютеров.» — Наше кредо с 1995 года.</div>
       </div>
       <div class="foot-col">
