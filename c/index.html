@@ -1,0 +1,1303 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>ITBG — Удобные и выгодные IT-решения для руководителя</title>
+<meta name="description" content="ООО «АйТи Бизнес Консалтинг» с 1995 года. Виртуальный офис, комплексное IT-обслуживание, 1С, CRM, СКС, СВН и СКУД. Санкт-Петербург, вся Россия." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='1' y='20' width='10' height='10' fill='%23ff4d14' stroke='%230a0a0a' stroke-width='2'/><rect x='11' y='10' width='10' height='10' fill='%23ff4d14' stroke='%230a0a0a' stroke-width='2'/><rect x='21' y='0' width='10' height='10' fill='%23ff4d14' stroke='%230a0a0a' stroke-width='2'/></svg>">
+
+<style>
+/* ───────── tokens ───────── */
+:root{
+  --bg:#fafaf7;
+  --panel:#ffffff;
+  --ink:#0a0a0a;
+  --orange:#ff4d14;
+  --blue:#1a3cff;
+  --yellow:#ffd93d;
+  --rule:#0a0a0a;
+  --mute:#5a5a5a;
+
+  --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+
+  --max:1440px;
+  --pad:clamp(20px,4vw,56px);
+  --b:3px;
+  --bth:2px;
+  --shadow:6px 6px 0 var(--ink);
+  --shadow-lg:10px 10px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{overflow-x:hidden;font-size:16px;line-height:1.5;font-weight:500}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+::selection{background:var(--orange);color:var(--bg)}
+
+/* ───────── utilities ───────── */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad);position:relative}
+.mono{font-family:var(--f-mono);font-weight:500;text-transform:uppercase;letter-spacing:0.04em;font-size:12px}
+.display{font-family:var(--f-display);letter-spacing:-0.03em;font-weight:800;text-transform:uppercase;line-height:0.88}
+
+.hl{background:var(--orange);color:var(--bg);padding:0 .12em;display:inline-block}
+.hl-blue{background:var(--blue);color:var(--bg);padding:0 .12em;display:inline-block}
+.hl-yellow{background:var(--yellow);color:var(--ink);padding:0 .12em;display:inline-block}
+
+/* ───────── top strip ───────── */
+.topstrip{
+  background:var(--ink);color:var(--yellow);
+  font-family:var(--f-mono);text-transform:uppercase;font-size:12px;letter-spacing:0.06em;font-weight:500;
+  border-bottom:var(--b) solid var(--ink);
+}
+.topstrip-inner{
+  max-width:var(--max);margin:0 auto;padding:12px var(--pad);
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+.topstrip .sep{color:#5a5a5a}
+.topstrip .blink{width:8px;height:8px;background:var(--orange);display:inline-block;animation:blink 1.4s infinite}
+@keyframes blink{0%,60%{opacity:1}70%{opacity:.2}100%{opacity:1}}
+.topstrip .right{margin-left:auto;display:flex;gap:20px;align-items:center}
+.topstrip a:hover{color:var(--orange)}
+
+/* ───────── nav ───────── */
+.nav{
+  position:sticky;top:0;z-index:60;background:var(--bg);
+  border-bottom:var(--b) solid var(--ink);
+}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;padding:18px var(--pad);
+  display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;
+}
+.brand{display:flex;align-items:center;gap:14px;position:relative}
+.brand-mark{display:flex;align-items:center;gap:10px}
+.brand-name{
+  font-family:var(--f-display);font-weight:800;font-size:36px;letter-spacing:-0.05em;line-height:1;
+  text-transform:uppercase;
+}
+.brand-sticker{
+  position:absolute;top:-12px;right:-78px;
+  background:var(--orange);color:var(--bg);
+  font-family:var(--f-display);font-weight:800;font-size:11px;letter-spacing:0.04em;
+  padding:6px 10px;border:var(--bth) solid var(--ink);
+  transform:rotate(-6deg);
+  text-transform:uppercase;
+  box-shadow:3px 3px 0 var(--ink);
+  transition:transform .18s ease;
+}
+.brand:hover .brand-sticker{transform:rotate(-3deg) scale(1.04)}
+
+.nav-links{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+.nav-links a{
+  font-family:var(--f-display);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.02em;
+  padding:10px 14px;border:var(--bth) solid transparent;
+  transition:background .15s ease,color .15s ease,border-color .15s ease;
+}
+.nav-links a:hover{background:var(--ink);color:var(--bg)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f-display);font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:0.02em;
+  padding:14px 22px;background:var(--panel);color:var(--ink);
+  border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow);
+  transform:translate(0,0);
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+  cursor:pointer;border-radius:2px;
+}
+.btn:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.btn.primary{background:var(--orange);color:var(--bg)}
+.btn.blue{background:var(--blue);color:var(--bg)}
+.btn.yellow{background:var(--yellow);color:var(--ink)}
+.btn.ink{background:var(--ink);color:var(--bg)}
+.btn .arr{font-weight:800;font-size:16px}
+
+/* ───────── pixel cascade logo motif ───────── */
+.pixel-logo{width:44px;height:44px;flex-shrink:0}
+
+/* ───────── hero ───────── */
+.hero{
+  position:relative;padding:72px 0 88px;
+  border-bottom:var(--b) solid var(--ink);
+  background:
+    radial-gradient(circle at 0 0, transparent 24px, transparent 25px),
+    repeating-linear-gradient(0deg, transparent 0, transparent 119px, rgba(10,10,10,.045) 119px, rgba(10,10,10,.045) 120px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 119px, rgba(10,10,10,.045) 119px, rgba(10,10,10,.045) 120px);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.55fr 1fr;gap:52px;align-items:start;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;
+  padding:8px 14px;background:var(--panel);border:var(--bth) solid var(--ink);
+  box-shadow:var(--shadow-sm);
+  margin-bottom:32px;
+}
+.hero-eyebrow .dot{width:8px;height:8px;background:var(--orange)}
+.hero h1{
+  font-family:var(--f-display);font-weight:800;
+  font-size:clamp(44px,7.2vw,120px);line-height:0.86;letter-spacing:-0.035em;
+  text-transform:uppercase;margin:0 0 36px;
+}
+.hero h1 .hl{transform:translateY(-4px);display:inline-block}
+.hero-lead{
+  font-family:var(--f-body);font-weight:500;font-size:clamp(16px,1.4vw,19px);line-height:1.55;
+  max-width:620px;color:#1c1c1c;margin:0 0 36px;
+}
+.hero-ctas{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+
+.hero-aside{position:relative;min-height:440px}
+.hero-card{
+  position:relative;background:var(--panel);
+  border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow-lg);
+  padding:28px 28px 24px;
+}
+.hero-card .eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.big-num{
+  font-family:var(--f-display);font-weight:800;
+  font-size:clamp(180px,22vw,280px);line-height:0.78;letter-spacing:-0.06em;
+  color:var(--ink);margin:0;
+}
+.hero-card .sub{
+  font-family:var(--f-display);font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:-0.01em;
+  margin-top:-8px;line-height:1;
+}
+.hero-card .meta{
+  display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px;
+  padding-top:18px;border-top:var(--bth) solid var(--ink);
+}
+.hero-card .meta .mono{font-size:11px}
+.hero-card .pulse{width:12px;height:12px;background:var(--orange);border:var(--bth) solid var(--ink);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,60%{transform:scale(1)}70%{transform:scale(1.35)}100%{transform:scale(1)}}
+
+.hero-sticker{
+  position:absolute;top:-22px;right:-22px;
+  background:var(--yellow);color:var(--ink);
+  font-family:var(--f-display);font-weight:800;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;
+  padding:10px 14px;border:var(--bth) solid var(--ink);
+  transform:rotate(7deg);
+  box-shadow:var(--shadow-sm);
+  z-index:5;text-align:center;line-height:1.15;max-width:150px;
+  transition:transform .25s ease;
+}
+.hero-sticker:hover{transform:rotate(4deg) scale(1.05)}
+
+.hero-mini{
+  position:absolute;bottom:-26px;left:-18px;
+  background:var(--blue);color:var(--bg);
+  font-family:var(--f-display);font-weight:800;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;
+  padding:8px 12px;border:var(--bth) solid var(--ink);
+  transform:rotate(-5deg);
+  box-shadow:var(--shadow-sm);
+}
+
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:var(--b) solid var(--ink);
+  margin-top:64px;
+}
+.hero-stat{
+  padding:28px var(--pad) 26px;
+  border-right:var(--bth) solid var(--ink);
+  background:var(--panel);
+}
+.hero-stat:last-child{border-right:0;background:var(--ink);color:var(--bg)}
+.hero-stat .k{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(40px,5vw,64px);line-height:0.95;letter-spacing:-0.03em;
+}
+.hero-stat .v{
+  font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--mute);margin-top:6px;
+}
+.hero-stat:last-child .v{color:var(--yellow)}
+
+/* ───────── section shell ───────── */
+.sec{position:relative;padding:96px 0;border-bottom:var(--b) solid var(--ink)}
+.sec-head{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:end;margin-bottom:56px}
+.sec-num{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(110px,16vw,220px);line-height:0.78;
+  -webkit-text-stroke:2.5px var(--ink);color:transparent;letter-spacing:-0.05em;
+}
+.sec-title{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(32px,5vw,64px);line-height:0.9;letter-spacing:-0.03em;
+  text-transform:uppercase;margin:0;
+}
+.sec-kicker{
+  font-family:var(--f-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
+  padding:8px 12px;background:var(--ink);color:var(--bg);
+  align-self:start;white-space:nowrap;
+}
+
+/* ───────── manifesto ───────── */
+.manifesto{background:var(--bg)}
+.manifesto-quote{
+  position:relative;padding:0 0 0 clamp(60px,10vw,180px);
+}
+.mark{
+  position:absolute;left:0;top:-40px;
+  font-family:var(--f-display);font-weight:800;font-size:clamp(220px,26vw,360px);line-height:0.8;
+  color:var(--orange);-webkit-text-stroke:0;
+}
+.manifesto blockquote{
+  margin:0;font-family:var(--f-display);font-weight:500;
+  font-size:clamp(24px,3vw,44px);line-height:1.14;letter-spacing:-0.02em;
+  max-width:1000px;
+}
+.manifesto blockquote em{font-style:normal;background:var(--ink);color:var(--bg);padding:0 .1em}
+.manifesto-src{
+  font-family:var(--f-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;color:var(--mute);margin-top:28px;padding-left:clamp(60px,10vw,180px);
+}
+
+.mf-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:72px}
+.mf-card{
+  background:var(--panel);border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow);padding:32px;
+  transform:translate(0,0);
+  transition:transform .15s ease,box-shadow .15s ease;
+  position:relative;
+}
+.mf-card:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.mf-card .n{
+  font-family:var(--f-display);font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:0.05em;
+  display:inline-block;padding:6px 10px;background:var(--ink);color:var(--bg);margin-bottom:18px;
+}
+.mf-card:nth-child(2) .n{background:var(--blue);color:var(--bg)}
+.mf-card h3{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(22px,2.4vw,32px);line-height:0.95;letter-spacing:-0.02em;
+  text-transform:uppercase;margin:0 0 14px;
+}
+.mf-card p{font-family:var(--f-body);font-weight:500;font-size:16px;line-height:1.55;margin:0;color:#1c1c1c}
+
+/* ───────── services ───────── */
+.services{background:var(--bg)}
+.svc-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:28px;
+}
+.svc{
+  background:var(--panel);border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow);padding:32px;
+  transform:translate(0,0);
+  transition:transform .15s ease,box-shadow .15s ease;
+  display:flex;flex-direction:column;gap:18px;
+  position:relative;overflow:hidden;min-height:340px;
+}
+.svc:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.svc .num{
+  font-family:var(--f-display);font-weight:800;font-size:96px;line-height:0.85;letter-spacing:-0.04em;
+  -webkit-text-stroke:2.5px var(--ink);color:transparent;
+  align-self:flex-start;
+}
+.svc h3{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(24px,2.4vw,34px);line-height:0.95;letter-spacing:-0.02em;
+  text-transform:uppercase;margin:0;
+}
+.svc p{font-family:var(--f-body);font-weight:500;font-size:15px;line-height:1.55;margin:0;color:#1c1c1c;flex:1}
+.svc .tags{display:flex;gap:8px;flex-wrap:wrap}
+.svc .tag{
+  font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500;
+  padding:6px 10px;background:var(--bg);border:var(--bth) solid var(--ink);border-radius:2px;
+}
+
+.svc.flag{background:var(--orange);color:var(--bg)}
+.svc.flag .num{-webkit-text-stroke:2.5px var(--bg);color:transparent}
+.svc.flag p{color:var(--bg)}
+.svc.flag .tag{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.svc.flag .flag-badge{
+  position:absolute;top:16px;right:16px;
+  font-family:var(--f-display);font-weight:800;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;
+  padding:6px 10px;background:var(--yellow);color:var(--ink);border:var(--bth) solid var(--ink);
+  transform:rotate(6deg);box-shadow:3px 3px 0 var(--ink);
+}
+
+.svc.ink-bg{background:var(--ink);color:var(--bg)}
+.svc.ink-bg .num{-webkit-text-stroke:2.5px var(--bg);color:transparent}
+.svc.ink-bg p{color:#d9d9d9}
+.svc.ink-bg .tag{background:var(--ink);color:var(--bg);border-color:var(--bg)}
+
+.svc.blue-bg{background:var(--blue);color:var(--bg)}
+.svc.blue-bg .num{-webkit-text-stroke:2.5px var(--bg);color:transparent}
+.svc.blue-bg p{color:#e0e6ff}
+.svc.blue-bg .tag{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* asymmetric layout */
+.svc[data-span="7"]{grid-column:span 7}
+.svc[data-span="5"]{grid-column:span 5}
+.svc[data-span="4"]{grid-column:span 4}
+.svc[data-span="8"]{grid-column:span 8}
+.svc[data-span="6"]{grid-column:span 6}
+
+/* ───────── timeline ───────── */
+.timeline-wrap{position:relative}
+.timeline{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative;
+}
+.timeline::before{
+  content:"";position:absolute;left:5%;right:5%;top:50%;height:3px;background:var(--ink);
+  transform:translateY(-50%);z-index:0;
+}
+.tl{
+  position:relative;z-index:2;background:var(--panel);
+  border:var(--b) solid var(--ink);box-shadow:var(--shadow);
+  padding:28px 24px;
+  transform:translate(0,0);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.tl:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.tl:nth-child(even){margin-top:48px}
+.tl:nth-child(odd){margin-bottom:48px}
+.tl .yr{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(40px,4.4vw,58px);line-height:0.9;letter-spacing:-0.03em;
+  margin:0 0 10px;
+}
+.tl h4{
+  font-family:var(--f-display);font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:0.02em;margin:0 0 10px;line-height:1.05;
+}
+.tl p{font-family:var(--f-body);font-weight:500;font-size:14px;line-height:1.5;margin:0;color:#1c1c1c}
+.tl.now{background:var(--orange);color:var(--bg)}
+.tl.now p{color:var(--bg)}
+.tl .chip{
+  display:inline-block;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;
+  padding:4px 8px;background:var(--ink);color:var(--bg);margin-bottom:12px;
+}
+.tl.now .chip{background:var(--ink);color:var(--yellow)}
+
+/* ───────── partners ───────── */
+.partners-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.partner{
+  background:var(--panel);border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow);
+  display:flex;flex-direction:column;
+  transform:translate(0,0);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.partner:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.partner-head{
+  padding:28px 28px 22px;
+  border-bottom:var(--b) solid var(--ink);
+  display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+}
+.partner-head .name{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(28px,3vw,42px);line-height:0.92;letter-spacing:-0.025em;
+  text-transform:uppercase;margin:0 0 8px;
+}
+.partner-head p{font-family:var(--f-body);font-weight:500;font-size:15px;line-height:1.5;margin:0;color:#1c1c1c}
+.partner-head .external{
+  font-family:var(--f-mono);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;
+  padding:8px 10px;border:var(--bth) solid var(--ink);background:var(--yellow);
+  flex-shrink:0;
+}
+.partner-list{padding:8px 0}
+.partner-row{
+  display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;
+  padding:18px 28px;border-top:var(--bth) solid var(--ink);
+  transition:background .15s ease,color .15s ease;
+}
+.partner-row:first-child{border-top:0}
+.partner-row:hover{background:var(--ink);color:var(--bg)}
+.partner-row .prod{font-family:var(--f-display);font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:-0.01em}
+.partner-row .desc{font-family:var(--f-body);font-weight:500;font-size:14px;color:var(--mute)}
+.partner-row:hover .desc{color:#bbb}
+.partner-row .arr{font-family:var(--f-display);font-weight:800;font-size:22px}
+
+.partner.p2 .partner-head{background:var(--blue);color:var(--bg)}
+.partner.p2 .partner-head p{color:#e0e6ff}
+.partner.p2 .partner-head .external{background:var(--yellow);color:var(--ink)}
+
+/* ───────── promos — diagonal banner ───────── */
+.promo-wrap{
+  position:relative;padding:120px 0;overflow:hidden;
+  background:var(--bg);
+  border-bottom:var(--b) solid var(--ink);
+}
+.promo-band{
+  position:relative;
+  transform:rotate(-3deg);
+  background:var(--orange);color:var(--bg);
+  border-top:var(--b) solid var(--ink);
+  border-bottom:var(--b) solid var(--ink);
+  padding:56px 0;
+  margin-left:-6%;margin-right:-6%;
+  box-shadow:0 10px 0 var(--ink);
+}
+.promo-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  align-items:center;
+}
+.promo{
+  display:flex;gap:22px;align-items:flex-start;
+}
+.promo .mark{
+  position:static;flex-shrink:0;
+  font-family:var(--f-display);font-weight:800;font-size:96px;line-height:0.78;letter-spacing:-0.03em;
+  color:var(--ink);-webkit-text-stroke:0;
+}
+.promo h4{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(18px,2vw,26px);line-height:1;letter-spacing:-0.01em;
+  text-transform:uppercase;margin:0 0 8px;
+}
+.promo p{font-family:var(--f-body);font-weight:600;font-size:15px;line-height:1.45;margin:0}
+.promo-sticker{
+  position:absolute;top:24px;right:7%;
+  background:var(--yellow);color:var(--ink);
+  font-family:var(--f-display);font-weight:800;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;
+  padding:10px 14px;border:var(--b) solid var(--ink);
+  transform:rotate(8deg);z-index:3;
+  box-shadow:var(--shadow-sm);
+}
+.promo-sticker-2{
+  position:absolute;bottom:40px;left:8%;
+  background:var(--blue);color:var(--bg);
+  font-family:var(--f-display);font-weight:800;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;
+  padding:8px 12px;border:var(--bth) solid var(--ink);
+  transform:rotate(-4deg);z-index:3;
+  box-shadow:var(--shadow-sm);
+}
+
+/* ───────── FAQ ───────── */
+.faq-wrap{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:18px}
+.faq{
+  background:var(--panel);border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow);
+  transform:translate(0,0);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.faq[open]{box-shadow:0 0 0 var(--ink);transform:translate(6px,6px)}
+.faq:hover:not([open]){transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.faq summary{
+  list-style:none;cursor:pointer;
+  padding:22px 26px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq .q-n{
+  font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:6px 10px;border:var(--bth) solid var(--ink);background:var(--yellow);
+}
+.faq .q-t{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(16px,1.6vw,20px);line-height:1.15;letter-spacing:-0.01em;
+  text-transform:uppercase;
+}
+.faq .q-i{
+  font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1;
+  width:36px;height:36px;display:grid;place-items:center;
+  border:var(--bth) solid var(--ink);background:var(--bg);
+  transition:transform .2s ease,background .2s ease,color .2s ease;
+}
+.faq[open] .q-i{background:var(--orange);color:var(--bg);transform:rotate(45deg)}
+.faq-body{
+  padding:0 26px 22px 26px;
+  font-family:var(--f-body);font-weight:500;font-size:15px;line-height:1.55;color:#1c1c1c;
+}
+.faq-body p{margin:0}
+
+.faq-aside{
+  position:sticky;top:120px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.q-badge{
+  width:240px;height:240px;align-self:center;
+  background:var(--yellow);color:var(--ink);
+  border:var(--b) solid var(--ink);box-shadow:var(--shadow-lg);
+  display:grid;place-items:center;
+  font-family:var(--f-display);font-weight:800;font-size:160px;line-height:0.8;letter-spacing:-0.06em;
+  transform:rotate(-6deg);
+  transition:transform .3s ease;
+}
+.q-badge:hover{transform:rotate(-3deg) scale(1.03)}
+.faq-cta{
+  background:var(--ink);color:var(--bg);
+  border:var(--b) solid var(--ink);box-shadow:var(--shadow);
+  padding:24px;
+}
+.faq-cta h5{
+  font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.01em;
+  margin:0 0 10px;line-height:1;
+}
+.faq-cta p{font-family:var(--f-body);font-weight:500;font-size:14px;line-height:1.5;margin:0 0 18px;color:#bbb}
+
+/* ───────── contacts ───────── */
+.contacts-wrap{
+  display:grid;grid-template-columns:1.3fr 1fr;gap:28px;
+}
+.contact-card{
+  background:var(--panel);border:var(--b) solid var(--ink);
+  box-shadow:var(--shadow-lg);padding:40px;
+  position:relative;
+}
+.contact-card .addr-label{
+  font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;
+  color:var(--mute);margin-bottom:8px;
+}
+.contact-card .addr{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(22px,2.2vw,32px);line-height:1;letter-spacing:-0.02em;
+  text-transform:uppercase;margin:0 0 36px;
+}
+.contact-card .phone-label{
+  font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;
+  color:var(--mute);margin-bottom:6px;
+}
+.contact-card .phone{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(40px,6vw,84px);line-height:0.9;letter-spacing:-0.045em;
+  margin:0 0 28px;display:block;
+}
+.contact-card .phone:hover{color:var(--orange)}
+.contact-row{
+  display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;
+  padding:16px 0;border-top:var(--bth) solid var(--ink);
+}
+.contact-row:last-child{border-bottom:var(--bth) solid var(--ink)}
+.contact-row .k{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--mute)}
+.contact-row .v{font-family:var(--f-display);font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:-0.01em}
+.contact-row .v:hover{color:var(--orange)}
+
+.map-card{
+  position:relative;background:var(--panel);
+  border:var(--b) solid var(--ink);box-shadow:var(--shadow-lg);
+  padding:0;overflow:hidden;min-height:440px;display:flex;flex-direction:column;
+}
+.map-sticker{
+  position:absolute;top:-16px;right:-12px;z-index:3;
+  background:var(--orange);color:var(--bg);
+  font-family:var(--f-display);font-weight:800;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+  padding:10px 14px;border:var(--b) solid var(--ink);
+  transform:rotate(7deg);
+  box-shadow:var(--shadow-sm);
+}
+.map-svg{flex:1;background:var(--yellow);border-bottom:var(--b) solid var(--ink);position:relative;display:grid;place-items:center;min-height:300px;overflow:hidden}
+.map-svg svg{width:100%;height:100%;display:block}
+.map-foot{
+  padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-weight:500;
+}
+.map-foot .pin{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 10px;background:var(--ink);color:var(--bg);
+}
+.map-foot .pin .dot{width:8px;height:8px;background:var(--orange)}
+
+/* ───────── footer ───────── */
+footer{background:var(--ink);color:var(--bg);border-top:var(--b) solid var(--ink)}
+.ft-top{
+  padding:72px 0 48px;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
+}
+.ft-brand{display:flex;flex-direction:column;gap:18px}
+.ft-brand .name{
+  font-family:var(--f-display);font-weight:800;font-size:48px;letter-spacing:-0.045em;line-height:1;text-transform:uppercase;
+}
+.ft-brand p{font-family:var(--f-body);font-weight:500;font-size:14px;line-height:1.55;color:#bbb;margin:0;max-width:380px}
+.ft-brand .motto{
+  font-family:var(--f-display);font-style:italic;font-weight:500;font-size:18px;letter-spacing:-0.01em;
+  color:var(--yellow);margin:0;
+}
+.ft-col h6{
+  font-family:var(--f-mono);font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--yellow);margin:0 0 18px;padding-bottom:12px;border-bottom:var(--bth) solid #333;
+}
+.ft-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.ft-col a{
+  font-family:var(--f-display);font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:0;
+  transition:color .15s ease;
+}
+.ft-col a:hover{color:var(--orange)}
+.ft-bottom{
+  padding:24px var(--pad);border-top:var(--bth) solid #333;
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;
+  color:#888;
+}
+.ft-bottom a:hover{color:var(--yellow)}
+
+/* ───────── reveal ───────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ───────── mobile ───────── */
+@media (max-width:960px){
+  .brand-sticker{right:-70px;font-size:10px}
+  .nav-inner{grid-template-columns:auto auto;row-gap:16px}
+  .nav-links{grid-column:1 / -1;justify-content:flex-start}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hero-stat:nth-child(2){border-right:0}
+  .hero-stat:nth-child(1),.hero-stat:nth-child(2){border-bottom:var(--bth) solid var(--ink)}
+  .sec-head{grid-template-columns:1fr;gap:18px}
+  .mf-cards{grid-template-columns:1fr}
+  .svc[data-span]{grid-column:span 12}
+  .timeline{grid-template-columns:1fr 1fr;gap:20px}
+  .timeline::before{display:none}
+  .tl:nth-child(even),.tl:nth-child(odd){margin:0}
+  .partners-grid{grid-template-columns:1fr}
+  .promo-inner{grid-template-columns:1fr;gap:32px}
+  .promo-sticker{right:4%;font-size:11px}
+  .promo-sticker-2{left:4%;bottom:10px}
+  .faq-wrap{grid-template-columns:1fr}
+  .q-badge{width:180px;height:180px;font-size:120px}
+  .contacts-wrap{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr;gap:32px}
+  .sec{padding:72px 0}
+  .hero{padding:48px 0 64px}
+}
+@media (max-width:560px){
+  .topstrip-inner{font-size:11px;gap:14px}
+  .topstrip .right{margin-left:0;width:100%;justify-content:flex-start}
+  .brand-sticker{display:none}
+  .nav-links a{padding:8px 10px;font-size:12px}
+  .hero h1{font-size:48px}
+  .hero-stats{grid-template-columns:1fr}
+  .hero-stat{border-right:0;border-bottom:var(--bth) solid var(--ink)}
+  .hero-stat:last-child{border-bottom:0}
+  .mf-card,.svc,.tl,.partner,.faq,.contact-card,.map-card{padding:22px}
+  .partner-head,.partner-row{padding-left:22px;padding-right:22px}
+  .ft-top{grid-template-columns:1fr}
+  .promo-band{padding:36px 0;margin-left:-10%;margin-right:-10%}
+  .promo .mark{font-size:64px}
+  .mark{font-size:160px;top:-20px}
+  .manifesto-quote,.manifesto-src{padding-left:44px}
+}
+</style>
+</head>
+<body>
+
+<!-- ───────── TOP STRIP ───────── -->
+<div class="topstrip">
+  <div class="topstrip-inner">
+    <span class="blink" aria-hidden="true"></span>
+    <span>ООО «АйТи Бизнес Консалтинг»</span>
+    <span class="sep">/</span>
+    <span>СПб · Дунайский 13к1 · ДЦ «Глория»</span>
+    <span class="sep">/</span>
+    <span>С 1995 года</span>
+    <div class="right">
+      <a href="tel:+78123255991">+7 (812) 325-59-91</a>
+      <span class="sep">/</span>
+      <a href="https://sd.itbg.ru" target="_blank" rel="noopener">SD.ITBG.RU →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ───────── NAV ───────── -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="ITBG — на главную">
+      <svg class="pixel-logo" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="2" y="30" width="14" height="14" fill="#ff4d14" stroke="#0a0a0a" stroke-width="2.5"/>
+        <rect x="17" y="17" width="14" height="14" fill="#ff4d14" stroke="#0a0a0a" stroke-width="2.5"/>
+        <rect x="32" y="4" width="14" height="14" fill="#ff4d14" stroke="#0a0a0a" stroke-width="2.5"/>
+      </svg>
+      <span class="brand-mark">
+        <span class="brand-name">ITBG</span>
+        <span class="brand-sticker">EST. 1995</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#about">О компании</a>
+      <a href="#partners">Партнёры</a>
+      <a href="#promo">Акции</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a href="#contacts" class="btn primary">Связаться <span class="arr">→</span></a>
+  </div>
+</header>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow reveal"><span class="dot"></span>ПЕТЕРБУРГ · ВСЯ РОССИЯ · B2B IT</span>
+        <h1 class="reveal">Удобные и выгодные <span class="hl">IT-решения</span> для руководителя</h1>
+        <p class="hero-lead reveal">Как снизить затраты на IT, открыть новые возможности развития бизнеса, обеспечить безопасность офиса и конфиденциальных данных — и при этом не вникать в технические вопросы. Сегодня многие IT-компании хорошо оказывают услуги по отдельности. Но сделать их удобными и выгодными в комплексе смогли далеко не все.</p>
+        <div class="hero-ctas reveal">
+          <a href="#services" class="btn primary">Смотреть услуги <span class="arr">→</span></a>
+          <a href="#contacts" class="btn">Получить расчёт <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="hero-aside reveal">
+        <div class="hero-sticker">1С-ФРАНЧАЙЗИ<br>С 2013</div>
+        <div class="hero-card">
+          <div class="eyebrow">ГОДЫ НА РЫНКЕ</div>
+          <div class="big-num">30</div>
+          <div class="sub">Лет опыта<br>и репутации</div>
+          <div class="meta">
+            <span class="mono">1995 → 2026</span>
+            <span class="mono" style="display:inline-flex;align-items:center;gap:8px"><span class="pulse"></span>АКТИВНЫ</span>
+          </div>
+        </div>
+        <div class="hero-mini">АККРЕДИТАЦИЯ МИНЦИФРЫ</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats reveal">
+    <div class="hero-stat">
+      <div class="k">6</div>
+      <div class="v">Направлений услуг</div>
+    </div>
+    <div class="hero-stat">
+      <div class="k">SLA</div>
+      <div class="v">Фиксированный договор</div>
+    </div>
+    <div class="hero-stat">
+      <div class="k">24/7</div>
+      <div class="v">Портал sd.itbg.ru</div>
+    </div>
+    <div class="hero-stat">
+      <div class="k">100%</div>
+      <div class="v">Конфиденциальность</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── MANIFESTO / ABOUT ───────── -->
+<section class="sec manifesto" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">01</div>
+      <h2 class="sec-title">Подход<br>без компромиссов</h2>
+      <div class="sec-kicker">О компании</div>
+    </div>
+
+    <div class="manifesto-quote reveal">
+      <span class="mark" aria-hidden="true">“</span>
+      <blockquote>
+        В <em>90%</em> случаев «айтишники» не воспринимают компьютеры как инструмент бизнеса. В отличие от них, при настройке и&nbsp;обслуживании оборудования мы мыслим и&nbsp;как компьютерщики, и&nbsp;как <span class="hl">бизнес-оптимизаторы</span> информационных потоков.
+      </blockquote>
+    </div>
+    <div class="manifesto-src reveal">— КРЕДО ITBG · РЕШЕНИЯ ДЛЯ ЛЮДЕЙ, А&nbsp;НЕ&nbsp;ДЛЯ КОМПЬЮТЕРОВ</div>
+
+    <div class="mf-cards">
+      <article class="mf-card reveal">
+        <span class="n">Преимущество 01</span>
+        <h3>Не нужно быть специалистом в IT</h3>
+        <p>Решения созданы для бизнесменов. Вы получаете предсказуемый результат, отчётность и единую точку ответственности. Техническая кухня — на нашей стороне.</p>
+      </article>
+      <article class="mf-card reveal">
+        <span class="n">Преимущество 02</span>
+        <h3>Стоимость — как у одного штатного</h3>
+        <p>Абонемент соизмерим с зарплатой штатных IT-специалистов, а эффективность для бизнеса на порядок выше: SRE, безопасность, 1С, сети и СКУД под единым SLA.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SERVICES ───────── -->
+<section class="sec services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">02</div>
+      <h2 class="sec-title">Шесть направлений —<br>один подрядчик</h2>
+      <div class="sec-kicker">Услуги</div>
+    </div>
+
+    <div class="svc-grid">
+      <!-- 01 flagship — spans 7 -->
+      <article class="svc flag reveal" data-span="7">
+        <span class="flag-badge">Флагман</span>
+        <div class="num">01</div>
+        <h3>Виртуальный офис</h3>
+        <p>Доступ к рабочему месту через интернет, мобильность сотрудников, объединение ресурсов филиалов, защита конфиденциальных данных. Существенная экономия на стартапе, новые возможности для зрелых компаний.</p>
+        <div class="tags">
+          <span class="tag">Удалённый доступ</span>
+          <span class="tag">Филиалы</span>
+          <span class="tag">RDP / VDI</span>
+          <span class="tag">Шифрование</span>
+          <span class="tag">Резервирование</span>
+          <span class="tag">Бэкап</span>
+        </div>
+      </article>
+
+      <!-- 02 — spans 5 -->
+      <article class="svc reveal" data-span="5">
+        <div class="num">02</div>
+        <h3>Комплексное<br>IT-обслуживание</h3>
+        <p>Оперативное обслуживание компьютеров, оргтехники, систем связи, видеонаблюдения и контроля доступа. Защита от взлома данных. Больше возможностей, чем у штатных IT-специалистов, за те же или меньшие деньги.</p>
+        <div class="tags">
+          <span class="tag">SLA-абонемент</span>
+          <span class="tag">Hardware</span>
+          <span class="tag">Сети</span>
+          <span class="tag">Инфобез</span>
+        </div>
+      </article>
+
+      <!-- 03 — spans 4 -->
+      <article class="svc reveal" data-span="4">
+        <div class="num">03</div>
+        <h3>Кабельные сети, СВН и СКУД</h3>
+        <p>Проектирование, монтаж и обслуживание СКС, систем видеонаблюдения и контроля доступа. От обследования объекта до сдачи под ключ.</p>
+        <div class="tags">
+          <span class="tag">СКС</span>
+          <span class="tag">СВН</span>
+          <span class="tag">СКУД</span>
+          <span class="tag">Проект</span>
+          <span class="tag">Монтаж</span>
+        </div>
+      </article>
+
+      <!-- 04 blue bg — spans 4 -->
+      <article class="svc blue-bg reveal" data-span="4">
+        <div class="num">04</div>
+        <h3>Внедрение и сопровождение 1С</h3>
+        <p>Программы управленческого и бухгалтерского учёта с постоянной доработкой под меняющиеся потребности бизнеса. Официальный партнёр «1С:Франчайзинг» с 2013 года.</p>
+        <div class="tags">
+          <span class="tag">1С:ERP</span>
+          <span class="tag">Бухгалтерия</span>
+          <span class="tag">УТ</span>
+          <span class="tag">ЗУП</span>
+          <span class="tag">Доработка</span>
+        </div>
+      </article>
+
+      <!-- 05 — spans 4 -->
+      <article class="svc reveal" data-span="4">
+        <div class="num">05</div>
+        <h3>Автоматизация<br>бизнеса и CRM</h3>
+        <p>Систематизация клиентской базы, контроль этапов бизнес-процессов, улучшение коммуникации, ускорение выполнения задач. Условие конкурентоспособности современного бизнеса.</p>
+        <div class="tags">
+          <span class="tag">CRM</span>
+          <span class="tag">Лиды</span>
+          <span class="tag">Аналитика</span>
+          <span class="tag">Автоматизация</span>
+        </div>
+      </article>
+
+      <!-- 06 ink bg — spans 4 -->
+      <article class="svc ink-bg reveal" data-span="4">
+        <div class="num">06</div>
+        <h3>IT-консалтинг</h3>
+        <p>Консультации по IT-инфраструктуре, безопасности данных, автоматизации бизнес-процессов. Стратегии повышения эффективности и снижения технических рисков.</p>
+        <div class="tags">
+          <span class="tag">Аудит</span>
+          <span class="tag">Стратегия</span>
+          <span class="tag">Риски</span>
+          <span class="tag">Импортозамещение</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── TIMELINE ───────── -->
+<section class="sec timeline-wrap" id="history">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">03</div>
+      <h2 class="sec-title">Тридцать лет —<br>четыре точки роста</h2>
+      <div class="sec-kicker">История</div>
+    </div>
+
+    <div class="timeline">
+      <article class="tl reveal">
+        <span class="chip">Год 01</span>
+        <div class="yr">1995</div>
+        <h4>Основание</h4>
+        <p>Начало работы на рынке IT-услуг и систем безопасности. Команда профессионалов, преданных одному делу.</p>
+      </article>
+      <article class="tl reveal">
+        <span class="chip">Год 18</span>
+        <div class="yr">2013</div>
+        <h4>1С:Франчайзинг</h4>
+        <p>Вступление в официальную сеть «1С:Франчайзинг», статус партнёра и фокус на управленческий учёт.</p>
+      </article>
+      <article class="tl reveal">
+        <span class="chip">Год 22</span>
+        <div class="yr">2017</div>
+        <h4>Реестр Минцифры</h4>
+        <p>Включение в Реестр аккредитованных IT-организаций. Курс на импортозамещение и цифровой суверенитет РФ.</p>
+      </article>
+      <article class="tl now reveal">
+        <span class="chip">Сегодня</span>
+        <div class="yr">2026</div>
+        <h4>Вся Россия</h4>
+        <p>Клиенты по всей России. Миссия неизменна: помощь вашему бизнесу, решения для людей, а не для компьютеров.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PARTNERS ───────── -->
+<section class="sec" id="partners">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">04</div>
+      <h2 class="sec-title">Технологические<br>партнёры</h2>
+      <div class="sec-kicker">Партнёры</div>
+    </div>
+
+    <div class="partners-grid">
+      <article class="partner p1 reveal">
+        <div class="partner-head">
+          <div>
+            <h3 class="name">Сканпорт</h3>
+            <p>Эксперты в автоматизации бизнеса на базе штрихкодов и RFID. Разработчики и интеграторы комплексных решений для учёта и маркировки с мобильными технологиями.</p>
+          </div>
+          <a class="external" href="https://scanport.ru" target="_blank" rel="noopener">scanport.ru ↗</a>
+        </div>
+        <div class="partner-list">
+          <a class="partner-row" href="https://data-mobile.ru/datamobile/" target="_blank" rel="noopener">
+            <span class="prod">Флагман</span>
+            <span class="desc">Комплексные решения учёта и маркировки</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="partner-row" href="https://scanport.ru" target="_blank" rel="noopener">
+            <span class="prod">RFID · Штрих-код</span>
+            <span class="desc">Мобильные технологии и интеграция</span>
+            <span class="arr">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="partner p2 reveal">
+        <div class="partner-head">
+          <div>
+            <h3 class="name">DataMobile</h3>
+            <p>Линейка продуктов Сканпорта: мобильный учёт, инвентаризация, ТОиР, доставка, прайсчекеры.</p>
+          </div>
+          <a class="external" href="https://data-mobile.ru" target="_blank" rel="noopener">data-mobile.ru ↗</a>
+        </div>
+        <div class="partner-list">
+          <a class="partner-row" href="https://data-mobile.ru/datamobile/" target="_blank" rel="noopener">
+            <span class="prod">DataMobile</span>
+            <span class="desc">Автоматизация торгового зала и склада</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="partner-row" href="https://data-mobile.ru/datamobile-inventory/" target="_blank" rel="noopener">
+            <span class="prod">DM.Invent</span>
+            <span class="desc">Инвентаризация основных средств</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="partner-row" href="https://data-mobile.ru/dm-toir/" target="_blank" rel="noopener">
+            <span class="prod">DM.ТОИР</span>
+            <span class="desc">Техническое обслуживание и ремонт</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="partner-row" href="https://data-mobile.ru/datamobile-delivery/" target="_blank" rel="noopener">
+            <span class="prod">DM.Доставка Pro</span>
+            <span class="desc">Курьерская служба</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="partner-row" href="https://data-mobile.ru/dm-pricecheker/" target="_blank" rel="noopener">
+            <span class="prod">DM.Прайсчекер</span>
+            <span class="desc">Микрокиоски и прайсчекеры</span>
+            <span class="arr">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PROMOS (diagonal banner) ───────── -->
+<section class="promo-wrap" id="promo">
+  <div class="promo-sticker">ВЫГОДА!</div>
+  <div class="promo-sticker-2">ОГРАНИЧЕНО ПО СРОКАМ</div>
+  <div class="promo-band reveal">
+    <div class="promo-inner">
+      <div class="promo">
+        <span class="mark">01</span>
+        <div>
+          <h4>Скидки при оплате за 6+ месяцев</h4>
+          <p>Единовременная оплата аренды виртуального офиса за 6 и более месяцев — специальные условия и прогрессивная скидка по договору.</p>
+        </div>
+      </div>
+      <div class="promo">
+        <span class="mark">02</span>
+        <div>
+          <h4>Месяц обслуживания бесплатно</h4>
+          <p>Месяц комплексного IT-обслуживания в подарок при подключении к виртуальному офису. Действует для новых клиентов.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FAQ ───────── -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">05</div>
+      <h2 class="sec-title">Часто задаваемые<br>вопросы</h2>
+      <div class="sec-kicker">FAQ</div>
+    </div>
+
+    <div class="faq-wrap">
+      <div class="faq-list">
+        <details class="faq reveal" open>
+          <summary>
+            <span class="q-n">Q · 01</span>
+            <span class="q-t">Как подключиться к виртуальному офису?</span>
+            <span class="q-i" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body"><p>Используется стандартное приложение «Подключение к удалённому рабочему столу» (mstsc.exe). Индивидуальные значения выдаются после активации. На медленном канале рекомендуется снизить глубину цвета до 16–24 бит.</p></div>
+        </details>
+        <details class="faq reveal">
+          <summary>
+            <span class="q-n">Q · 02</span>
+            <span class="q-t">В чём отличие от штатного IT-отдела?</span>
+            <span class="q-i" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body"><p>Стоимость соизмерима с зарплатой одного специалиста, но компетенции команды покрывают SRE, безопасность, 1С, сети, СКУД под единым SLA. Единая точка ответственности и прозрачная отчётность.</p></div>
+        </details>
+        <details class="faq reveal">
+          <summary>
+            <span class="q-n">Q · 03</span>
+            <span class="q-t">С какими отраслями вы работаете?</span>
+            <span class="q-i" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body"><p>С 1995 года — десятки компаний Москвы и Петербурга. Сегодня география — вся Россия: ритейл и склады (штрих-код, RFID), производство, финансы, строительство. Конфиденциальность клиентов превыше всего.</p></div>
+        </details>
+        <details class="faq reveal">
+          <summary>
+            <span class="q-n">Q · 04</span>
+            <span class="q-t">Работаете ли с импортозамещением?</span>
+            <span class="q-i" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body"><p>Да. Компания в Реестре аккредитованных IT-организаций Минцифры. Выполняем поручения Президента РФ и постановления правительства в области цифрового суверенитета.</p></div>
+        </details>
+        <details class="faq reveal">
+          <summary>
+            <span class="q-n">Q · 05</span>
+            <span class="q-t">Как устроен договор на обслуживание?</span>
+            <span class="q-i" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body"><p>Абонентский договор с фиксированным SLA: время реакции, окна работ, приоритеты. В комплекс входят инциденты, плановые работы, отчётность и выезды инженера на объект.</p></div>
+        </details>
+        <details class="faq reveal">
+          <summary>
+            <span class="q-n">Q · 06</span>
+            <span class="q-t">Есть ли портал самообслуживания?</span>
+            <span class="q-i" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body"><p>Да, sd.itbg.ru: заявки, SLA, инциденты, база знаний, счета и акты. Клиент в любой момент видит статус и историю работ по своему договору.</p></div>
+        </details>
+      </div>
+
+      <aside class="faq-aside">
+        <div class="q-badge" aria-hidden="true">?</div>
+        <div class="faq-cta">
+          <h5>Остались вопросы?</h5>
+          <p>Задайте их напрямую — ответим в течение рабочего дня, без форм и роботов.</p>
+          <a href="mailto:info@itbg.ru" class="btn yellow">info@itbg.ru <span class="arr">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CONTACTS ───────── -->
+<section class="sec" id="contacts">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">06</div>
+      <h2 class="sec-title">Приходите,<br>звоните, пишите</h2>
+      <div class="sec-kicker">Контакты</div>
+    </div>
+
+    <div class="contacts-wrap">
+      <div class="contact-card reveal">
+        <div class="addr-label">Адрес офиса</div>
+        <p class="addr">196158, Санкт-Петербург,<br>Дунайский пр., д. 13, корп. 1,<br>ДЦ «Глория»</p>
+        <div class="phone-label">Прямой номер</div>
+        <a href="tel:+78123255991" class="phone">+7 (812)<br>325-59-91</a>
+        <div class="contact-row">
+          <span class="k">E-mail</span>
+          <a href="mailto:info@itbg.ru" class="v">info@itbg.ru</a>
+        </div>
+        <div class="contact-row">
+          <span class="k">Портал</span>
+          <a href="https://sd.itbg.ru" target="_blank" rel="noopener" class="v">sd.itbg.ru</a>
+        </div>
+        <div class="contact-row">
+          <span class="k">Юр. лицо</span>
+          <span class="v">ООО «АйТи Бизнес Консалтинг»</span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Часы</span>
+          <span class="v">Пн–Пт · 10:00–19:00 MSK</span>
+        </div>
+      </div>
+
+      <div class="map-card reveal">
+        <div class="map-sticker">КАРТА →</div>
+        <div class="map-svg" aria-label="Схема расположения офиса">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.15"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="300" fill="#ffd93d"/>
+            <rect width="400" height="300" fill="url(#grid)"/>
+            <!-- roads -->
+            <path d="M0 180 L400 150" stroke="#0a0a0a" stroke-width="10" fill="none"/>
+            <path d="M260 0 L230 300" stroke="#0a0a0a" stroke-width="10" fill="none"/>
+            <path d="M0 80 L400 60" stroke="#0a0a0a" stroke-width="4" fill="none" opacity="0.5"/>
+            <path d="M100 0 L90 300" stroke="#0a0a0a" stroke-width="4" fill="none" opacity="0.5"/>
+            <!-- blocks -->
+            <rect x="40" y="110" width="50" height="30" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="110" y="90" width="70" height="40" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="280" y="200" width="60" height="50" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="40" y="220" width="60" height="40" fill="#fafaf7" stroke="#0a0a0a" stroke-width="2"/>
+            <!-- pin -->
+            <circle cx="235" cy="162" r="28" fill="#ff4d14" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="235" cy="162" r="10" fill="#0a0a0a"/>
+            <!-- label ribbon -->
+            <g transform="translate(235,115) rotate(-4)">
+              <rect x="-52" y="-14" width="104" height="22" fill="#0a0a0a"/>
+              <text x="0" y="1" text-anchor="middle" dominant-baseline="middle" fill="#ffd93d" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="12" letter-spacing="1">ITBG ЗДЕСЬ</text>
+            </g>
+            <!-- coords -->
+            <g transform="translate(16,284)">
+              <text font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#0a0a0a">59.83° N · 30.35° E</text>
+            </g>
+            <g transform="translate(384,284)" text-anchor="end">
+              <text font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#0a0a0a">Дунайский 13к1</text>
+            </g>
+          </svg>
+        </div>
+        <div class="map-foot">
+          <span class="pin"><span class="dot"></span>ДЦ ГЛОРИЯ</span>
+          <span>МЕТРО «ДУНАЙСКАЯ» · 8 МИН ПЕШКОМ</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:36px;display:flex;gap:18px;flex-wrap:wrap" class="reveal">
+      <a href="mailto:info@itbg.ru" class="btn primary">Написать письмо <span class="arr">→</span></a>
+      <a href="tel:+78123255991" class="btn">Позвонить <span class="arr">→</span></a>
+      <a href="https://sd.itbg.ru" target="_blank" rel="noopener" class="btn blue">Портал клиента <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <div style="display:flex;align-items:center;gap:14px">
+          <svg class="pixel-logo" viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="2" y="30" width="14" height="14" fill="#ff4d14" stroke="#ffd93d" stroke-width="2.5"/>
+            <rect x="17" y="17" width="14" height="14" fill="#ff4d14" stroke="#ffd93d" stroke-width="2.5"/>
+            <rect x="32" y="4" width="14" height="14" fill="#ff4d14" stroke="#ffd93d" stroke-width="2.5"/>
+          </svg>
+          <span class="name">ITBG</span>
+        </div>
+        <p>ООО «АйТи Бизнес Консалтинг». На рынке с 1995 года. Санкт-Петербург · вся Россия. Аккредитация Минцифры.</p>
+        <p class="motto">«Решения для людей, а не для компьютеров.»</p>
+      </div>
+      <div class="ft-col">
+        <h6>Навигация</h6>
+        <ul>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#about">О компании</a></li>
+          <li><a href="#partners">Партнёры</a></li>
+          <li><a href="#promo">Акции</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h6>Услуги</h6>
+        <ul>
+          <li><a href="#services">Виртуальный офис</a></li>
+          <li><a href="#services">IT-обслуживание</a></li>
+          <li><a href="#services">СКС / СВН / СКУД</a></li>
+          <li><a href="#services">1С Франчайзи</a></li>
+          <li><a href="#services">CRM и автоматизация</a></li>
+          <li><a href="#services">IT-консалтинг</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h6>Контакты</h6>
+        <ul>
+          <li><a href="tel:+78123255991">+7 (812) 325-59-91</a></li>
+          <li><a href="mailto:info@itbg.ru">info@itbg.ru</a></li>
+          <li><a href="https://sd.itbg.ru" target="_blank" rel="noopener">sd.itbg.ru</a></li>
+          <li><a href="#contacts">Дунайский 13к1, СПб</a></li>
+          <li><a href="#contacts">Вакансии</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 1995–2026 ITBG · ООО «АйТи Бизнес Консалтинг»</span>
+    <span>EST. 1995 · Санкт-Петербург · Вся Россия</span>
+    <span>Реестр Минцифры · 1С-Франчайзи · SLA 24/7</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length > 1){
+        var el = document.querySelector(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    });
+  });
+
+  /* intersection reveal */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* FAQ: close others on open (accordion) */
+  var faqs = document.querySelectorAll('.faq');
+  faqs.forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open){
+        faqs.forEach(function(o){ if(o!==d){ o.open=false; } });
+      }
+    });
+  });
+
+  /* sticker wobble on hover — small random variation */
+  document.querySelectorAll('.hero-sticker,.brand-sticker,.flag-badge,.promo-sticker,.promo-sticker-2,.map-sticker,.hero-mini').forEach(function(s){
+    s.addEventListener('mouseenter', function(){
+      var r = (Math.random() * 4 - 2).toFixed(2);
+      s.style.setProperty('--wobble', r + 'deg');
+    });
+  });
+})();
+</script>
+<!-- gallery backlink -->
+<style>
+#itbg-back{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:10px;
+padding:11px 15px;border:1px solid rgba(0,0,0,.15);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+border-radius:999px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#0a0a0a;
+text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:all .25s ease}
+#itbg-back:hover{transform:translateY(-1px);background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+#itbg-back .d{width:7px;height:7px;border-radius:50%;background:#d0ff3d;box-shadow:0 0 6px #d0ff3d}
+@media (prefers-color-scheme: dark){}
+</style>
+<a id="itbg-back" href="../variants/" aria-label="Ко всем вариантам"><span class="d"></span>Варианты <span style="opacity:.5">·</span> Галерея</a>
+</body>
+</html>

@@ -1132,5 +1132,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 </script>
+<!-- gallery backlink -->
+<style>
+#itbg-back{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:10px;
+padding:11px 15px;border:1px solid rgba(0,0,0,.15);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+border-radius:999px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#0a0a0a;
+text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:all .25s ease}
+#itbg-back:hover{transform:translateY(-1px);background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+#itbg-back .d{width:7px;height:7px;border-radius:50%;background:#d0ff3d;box-shadow:0 0 6px #d0ff3d}
+@media (prefers-color-scheme: dark){}
+</style>
+<a id="itbg-back" href="./variants/" aria-label="Ко всем вариантам"><span class="d"></span>Варианты <span style="opacity:.5">·</span> Галерея</a>
 </body>
 </html>

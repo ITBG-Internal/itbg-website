@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ITBG · Четыре направления дизайна</title>
+<meta name="description" content="Галерея из четырёх альтернативных направлений дизайна для сайта ITBG — ООО «АйТи Бизнес Консалтинг».">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='0' y='22' width='6' height='6' fill='%23d0ff3d'/><rect x='8' y='15' width='6' height='6' fill='%23d0ff3d' opacity='.78'/><rect x='16' y='22' width='6' height='6' fill='%23d0ff3d' opacity='.55'/><rect x='22' y='8' width='6' height='6' fill='%23d0ff3d' opacity='.35'/><rect x='27' y='16' width='4' height='4' fill='%23d0ff3d' opacity='.2'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Onest:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0d0e10;--ink:#f0ede4;--dim:#8a8e96;--rule:#23262c;--accent:#d0ff3d;
+  --pad:clamp(18px, 3.5vw, 52px);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Onest",system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--pad)}
+
+.top{
+  padding:22px 0;border-bottom:1px solid var(--rule);
+  font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--dim);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.top .l{color:var(--ink)}
+.top .r{color:var(--dim)}
+
+.masthead{padding:60px 0 40px;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:end;border-bottom:1px solid var(--rule)}
+.masthead .label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim)}
+.masthead h1{
+  font-family:"Cormorant Garamond",serif;font-weight:500;
+  font-size:clamp(44px, 7vw, 112px);line-height:.95;letter-spacing:-0.035em;color:#f2efe6;margin:12px 0 0;
+}
+.masthead h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.masthead .meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:1.7}
+
+.intro{padding:40px 0 20px;max-width:90ch;color:var(--dim);font-size:17px;line-height:1.55}
+.intro b{color:var(--ink);font-weight:500}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;padding:36px 0 80px}
+.card{
+  background:var(--card-bg, #141619);color:var(--card-fg, #f0ede4);
+  border:1px solid var(--card-border, var(--rule));
+  padding:40px 36px;display:flex;flex-direction:column;gap:22px;min-height:520px;
+  position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1), border-color .4s;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--card-accent, var(--accent))}
+.card .ord{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--card-meta, var(--dim))}
+.card .name{
+  font-family:var(--card-display, "Cormorant Garamond"),serif;
+  font-weight:500;font-size:clamp(36px, 4vw, 56px);line-height:1;letter-spacing:-0.025em;
+  color:var(--card-title, var(--ink));
+}
+.card .name em{font-style:italic;color:var(--card-accent, var(--accent));font-weight:400}
+.card .pitch{font-size:15px;line-height:1.55;color:var(--card-body, var(--dim));max-width:44ch}
+.card .pitch b{color:var(--card-fg, var(--ink));font-weight:500}
+
+.swatch{display:flex;gap:6px;margin-top:auto}
+.swatch i{display:block;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.08)}
+
+.specs{
+  display:grid;grid-template-columns:auto 1fr;gap:6px 16px;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--card-meta, var(--dim));
+}
+.specs b{color:var(--card-fg,var(--ink));font-weight:500}
+
+.open{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:16px;
+  border:1px solid var(--card-border-strong, var(--rule));
+  padding:14px 18px;
+  font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--card-fg, var(--ink));transition:all .3s;margin-top:8px;
+}
+.open:hover{background:var(--card-accent,var(--accent));color:var(--card-btn-ink,#000);border-color:var(--card-accent,var(--accent))}
+.open .arr{transition:transform .3s}
+.open:hover .arr{transform:translateX(4px)}
+
+/* preview strip — tiny typography sample showing each variant's flavor */
+.preview{
+  margin-top:6px;padding:22px 0 16px;border-top:1px dashed var(--card-border-strong, var(--rule));border-bottom:1px dashed var(--card-border-strong, var(--rule));
+  font-family:var(--card-display, "Cormorant Garamond"),serif;
+  font-size:clamp(22px,2.2vw,32px);line-height:1.05;letter-spacing:-0.02em;
+  color:var(--card-title, var(--ink));
+}
+.preview em{font-style:italic}
+
+/* VARIANT 0 — Editorial / Dark Lime */
+.v0{
+  --card-bg:#0b0c0e;--card-fg:#e4e1d8;--card-title:#f2efe6;--card-body:#b3b7bf;
+  --card-meta:#7a7f88;--card-border:#22262c;--card-border-strong:#343840;
+  --card-accent:#d0ff3d;--card-display:"Cormorant Garamond";--card-btn-ink:#000;
+}
+.v0 .bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 40% at 80% 0%, rgba(208,255,61,.06), transparent 70%),
+  linear-gradient(180deg, #0b0c0e, #0a0b0d);z-index:0;pointer-events:none}
+.v0 > *{position:relative;z-index:1}
+
+/* VARIANT A — Blueprint Bureau (light cream, teal) */
+.va{
+  --card-bg:#f1ecdf;--card-fg:#17181a;--card-title:#17181a;--card-body:#3c3e42;
+  --card-meta:#5d6066;--card-border:rgba(23,24,26,.14);--card-border-strong:rgba(23,24,26,.35);
+  --card-accent:#0d8089;--card-display:"IBM Plex Serif";--card-btn-ink:#fff;
+}
+.va .bg{position:absolute;inset:0;background-image:
+  radial-gradient(circle at 1px 1px, rgba(23,24,26,.08) 1px, transparent 0);
+  background-size:8px 8px;z-index:0;pointer-events:none}
+.va > *{position:relative;z-index:1}
+.va .preview{font-family:"IBM Plex Serif",serif}
+.va .name{font-family:"IBM Plex Serif",serif}
+
+/* VARIANT B — Editorial Broadsheet (cream, red) */
+.vb{
+  --card-bg:#f5efe1;--card-fg:#0b0a08;--card-title:#0b0a08;--card-body:#3a342b;
+  --card-meta:#6b4f28;--card-border:rgba(11,10,8,.2);--card-border-strong:rgba(11,10,8,.4);
+  --card-accent:#b12d1e;--card-display:"Fraunces";--card-btn-ink:#fff;
+}
+.vb .bg{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:repeating-linear-gradient(180deg, transparent 0, transparent 39px, rgba(11,10,8,.04) 39px, rgba(11,10,8,.04) 40px)}
+.vb > *{position:relative;z-index:1}
+.vb .name, .vb .preview{font-family:"Fraunces",serif}
+.vb .name{font-variation-settings:"opsz" 100, "SOFT" 50, "wght" 500}
+
+/* VARIANT C — Neo-Brutalist */
+.vc{
+  --card-bg:#fafaf7;--card-fg:#0a0a0a;--card-title:#0a0a0a;--card-body:#3a3a3a;
+  --card-meta:#5a5a5a;--card-border:#0a0a0a;--card-border-strong:#0a0a0a;
+  --card-accent:#ff4d14;--card-display:"Bricolage Grotesque";--card-btn-ink:#fff;
+  border-width:3px;
+}
+.vc{border:3px solid #0a0a0a;box-shadow:8px 8px 0 #0a0a0a;transition:transform .2s ease, box-shadow .2s ease, border-color .4s}
+.vc:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 #0a0a0a}
+.vc .name{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em}
+.vc .preview{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em}
+.vc .open{background:#0a0a0a;color:#fafaf7}
+.vc .open:hover{background:#ff4d14;color:#0a0a0a;border-color:#0a0a0a}
+
+/* footer */
+.foot{border-top:1px solid var(--rule);padding:30px 0 50px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot a:hover{color:var(--ink)}
+
+@media (max-width:880px){
+  .grid{grid-template-columns:1fr}
+  .masthead{grid-template-columns:1fr;gap:12px}
+  .masthead .meta{text-align:left}
+}
+
+/* badge for recommended or current */
+.tag{
+  position:absolute;top:18px;right:18px;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+  border:1px solid currentColor;padding:5px 10px;border-radius:2px;opacity:.75;
+}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:all 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <div class="l">itbg · подборка концепций</div>
+    <div class="r">4 направления · апрель 2026</div>
+  </div>
+</div>
+
+<header class="wrap">
+  <div class="masthead">
+    <div class="label">презентация<br>№ 01</div>
+    <h1>Четыре <em>направления</em><br>дизайна.</h1>
+    <div class="meta">ITBG / 1995–2026<br>Санкт-Петербург<br>Подготовлено Claude</div>
+  </div>
+
+  <p class="intro reveal">
+    Каждая концепция — самостоятельный взгляд на один и тот же материал (контент ITBG, услуги, хронология, партнёры). Различия принципиальные: <b>палитра, типографика, тон, структура вёрстки</b>. Откройте любой вариант — это полноценный сайт на одной странице. Вернуться в галерею можно из правого нижнего угла каждой страницы.
+  </p>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+
+    <!-- Variant 0 -->
+    <a class="card v0 reveal" href="../index.html" aria-label="Открыть вариант 0">
+      <div class="bg"></div>
+      <span class="tag">текущий</span>
+      <div class="ord">№ 00 · Editorial Engineering</div>
+      <div class="name">Инженерное <em>бюро</em></div>
+      <p class="pitch">Тёмная редакционная база с электрически-лаймовым акцентом. Крупные серифные дисплеи, видимая сетка, номера разделов и технические маркеры. Ощущение: <b>сдержанная техническая экспертиза</b>, «документ из серьёзного бюро».</p>
+      <div class="preview">Удобные и <em>выгодные</em> IT-решения.</div>
+      <div class="specs">
+        <span>Тема</span><b>Dark editorial</b>
+        <span>Акцент</span><b>Electric lime #d0ff3d</b>
+        <span>Шрифты</span><b>Cormorant + Onest + JetBrains Mono</b>
+        <span>Характер</span><b>Зрелый, сдержанный, технический</b>
+      </div>
+      <div class="swatch" aria-hidden="true">
+        <i style="background:#0b0c0e"></i><i style="background:#16181c"></i><i style="background:#d0ff3d"></i><i style="background:#e9e3d5"></i><i style="background:#ff5a1f"></i>
+      </div>
+      <span class="open">Открыть вариант <span class="arr">→</span></span>
+    </a>
+
+    <!-- Variant A -->
+    <a class="card va reveal" href="../a/index.html" aria-label="Открыть вариант A">
+      <div class="bg"></div>
+      <div class="ord">№ A · Blueprint Bureau</div>
+      <div class="name">Чертёжный <em>плат</em></div>
+      <p class="pitch">Светлая бумажная палитра, бирюзовый акцент — современная реплика бирюзы оригинального логотипа ITBG. Сетка, измерительные риски, номера «пластин», схематические диаграммы услуг. Ощущение: <b>архитектурное бюро</b>, точность и инженерная культура.</p>
+      <div class="preview">Плата 01 · <em>программа услуг</em></div>
+      <div class="specs">
+        <span>Тема</span><b>Light / cream paper</b>
+        <span>Акцент</span><b>Teal #0d8089 (оммаж логотипу)</b>
+        <span>Шрифты</span><b>IBM Plex Serif / Sans / Mono</b>
+        <span>Характер</span><b>Точный, инженерный, спокойный</b>
+      </div>
+      <div class="swatch" aria-hidden="true">
+        <i style="background:#f1ecdf"></i><i style="background:#17181a"></i><i style="background:#0d8089"></i><i style="background:#c2410c"></i><i style="background:#5d6066"></i>
+      </div>
+      <span class="open">Открыть вариант <span class="arr">→</span></span>
+    </a>
+
+    <!-- Variant B -->
+    <a class="card vb reveal" href="../b/index.html" aria-label="Открыть вариант B">
+      <div class="bg"></div>
+      <div class="ord">№ B · Editorial Broadsheet</div>
+      <div class="name">Деловое <em>издание</em></div>
+      <p class="pitch">Газетная кремовая бумага, редакционный красный акцент, буквицы, двух- и трёх-колоночный набор, цитаты-врезки. Стиль серьёзного бизнес-издания. Ощущение: <b>умное чтение для зрелого руководителя</b>, гравитация и читательское удовольствие.</p>
+      <div class="preview"><em>Решения</em> для людей, а не для компьютеров.</div>
+      <div class="specs">
+        <span>Тема</span><b>Cream newspaper</b>
+        <span>Акцент</span><b>Editorial red #b12d1e</b>
+        <span>Шрифты</span><b>Fraunces + Source Serif 4</b>
+        <span>Характер</span><b>Интеллектуальный, премиальный</b>
+      </div>
+      <div class="swatch" aria-hidden="true">
+        <i style="background:#f5efe1"></i><i style="background:#efe7d3"></i><i style="background:#0b0a08"></i><i style="background:#b12d1e"></i><i style="background:#6b4f28"></i>
+      </div>
+      <span class="open">Открыть вариант <span class="arr">→</span></span>
+    </a>
+
+    <!-- Variant C -->
+    <a class="card vc reveal" href="../c/index.html" aria-label="Открыть вариант C">
+      <div class="ord">№ C · Neo-Brutalist</div>
+      <div class="name">Смелый <em>бренд</em></div>
+      <p class="pitch">Толстые чёрные обводки, жёсткие офсетные тени, ротированные стикеры, контрастные цветовые блоки, диагональные баннеры. Ощущение: <b>уверенный современный бренд</b> — заметно, дерзко, хорошо конвертирует на молодую и растущую аудиторию.</p>
+      <div class="preview">IT-решения <em>без бюрократии.</em></div>
+      <div class="specs">
+        <span>Тема</span><b>Bright paper / thick borders</b>
+        <span>Акцент</span><b>Hot orange #ff4d14 + cobalt</b>
+        <span>Шрифты</span><b>Bricolage Grotesque + Manrope</b>
+        <span>Характер</span><b>Смелый, молодой, запоминающийся</b>
+      </div>
+      <div class="swatch" aria-hidden="true">
+        <i style="background:#fafaf7"></i><i style="background:#0a0a0a"></i><i style="background:#ff4d14"></i><i style="background:#1a3cff"></i><i style="background:#ffd93d"></i>
+      </div>
+      <span class="open">Открыть вариант <span class="arr">→</span></span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="wrap">
+  <div class="foot">
+    <div>© 1995–2026 ООО «АйТи Бизнес Консалтинг» · itbg.ru</div>
+    <div>Контент всех вариантов идентичен · отличается только дизайн</div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(n=>io.observe(n));
+</script>
+</body>
+</html>
